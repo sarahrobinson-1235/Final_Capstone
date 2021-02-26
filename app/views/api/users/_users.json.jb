@@ -1,0 +1,10 @@
+{
+name: user.name,
+email: user.email,
+pic: user.image_url,
+posts: {
+  user.post.name,
+  user.post.body
+},
+boards: user.boards
+}
