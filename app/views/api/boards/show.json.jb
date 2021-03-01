@@ -1,0 +1,10 @@
+{ 
+  board: @board.posts.map do |post|
+  {
+    name: post.name,
+    image_url: post.image_url,
+    body: post.body,
+    posted: post.created_at
+  }
+end
+}

@@ -1,10 +1,18 @@
 {
-name: user.name,
-email: user.email,
-pic: user.image_url,
-posts: {
-  user.post.name,
-  user.post.body
-},
-boards: user.boards
+  name: user.name,
+  email: user.email,
+  pic: user.image_url,
+  posts: user.posts.map do |post|
+    {
+      name: post.name,
+      body: post.body
+    } 
+  end,
+  boards: user.boards.map do |board|
+    {
+      title: board.title,
+      description: board.description
+    }
+  end
 }
+

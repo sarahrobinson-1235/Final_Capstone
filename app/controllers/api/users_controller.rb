@@ -1,5 +1,5 @@
 class Api::UsersController < ApplicationController
-  # before_action :authenticate_user
+  # before_action :authenticate_admin
   
   def create
     user = User.new(
@@ -17,32 +17,43 @@ class Api::UsersController < ApplicationController
 
 
   def show
-    
-    id = params["id"]
-    @user = User.find_by(id: id)
-    
-    if @user
-      render "show.json.jb"
+    if current_user
+      id = params["id"]
+      @user = User.find_by(id: id)
+      
+      if @user
+        render "show.json.jb"
+      else
+        render json: { errors: @user.errors.full_messages }, status: :unprocessable_entity
+      end
     else
-      render json: { errors: @user.errors.full_messages }, status: :unprocessable_entity
+      render json: {message: "Login to see this user"}
     end
   end
 
   def update
     @user = User.find_by(id: params[:id])
-    @user.name = params[:name] || @user.name
-    @user.email = params[:email] || @user.email
-    @user.image_url = params[:image_url] || @user.image_url
-    if @user.save
-      render "_users.json.jb"
+    if @user == current_user
+      @user.name = params[:name] || @user.name
+      @user.email = params[:email] || @user.email
+      @user.image_url = params[:image_url] || @user.image_url
+      if @user.save
+        render "show.json.jb"
+      else
+        render json: { errors: @user.errors.full_messages }, status: :unprocessable_entity
+      end
     else
-      render json: { errors: @user.errors.full_messages }, status: :unprocessable_entity
+      render json: {message: "Not your profile!"}
     end
   end
 
   def destroy
     user = User.find_by(id: params[:id])
-    user.destroy
-    render json: { message: "Profile Deleted!" }
+    if user == current_user
+      user.destroy
+      render json: { message: "Profile Deleted!" }
+    else
+      render json: {message: "Not your profile!"}
+    end
   end
 end
