@@ -28,5 +28,7 @@ Rails.application.routes.draw do
 
     get "/user_boards/:id" => "user_boards#index"
 
+    get "/quote" => "quotes#daily"
+
   end
 end

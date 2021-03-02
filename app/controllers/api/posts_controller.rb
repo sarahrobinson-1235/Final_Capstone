@@ -37,6 +37,7 @@ class Api::PostsController < ApplicationController
     if @post.user_id == current_user.id
       @post.name = params[:name] || @post.name
       @post.body = params[:body] || @post.body
+      @post.image_url = params[:image_url] || @post.image_url
       if @post.save
         render "show.json.jb"
       else

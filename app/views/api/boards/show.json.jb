@@ -1,4 +1,5 @@
-{ 
+{ title: @board.title,
+  description: @board.description,
   board: @board.posts.map do |post|
   {
     name: post.name,
