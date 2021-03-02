@@ -1,0 +1,11 @@
+{
+  id: post.id,
+  title: post.name,
+  image_url: post.image_url,
+  body: post.body,
+  created_by: {
+    id: post.user.id,
+    name: post.user.name
+  },
+  created_at: post.created_at,
+}

@@ -1,7 +1,0 @@
-{
-  Title: post.name,
-  Image_url: post.image_url,
-  Body: post.body,
-  By: post.user.name,
-  Posted: post.created_at,
-}

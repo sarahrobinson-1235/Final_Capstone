@@ -1,11 +1,6 @@
-{ title: @board.title,
-  description: @board.description,
-  board: @board.posts.map do |post|
-  {
-    name: post.name,
-    image_url: post.image_url,
-    body: post.body,
-    posted: post.created_at
-  }
+board = render partial: "board.json.jb", locals: {board: @board}
+board[:posts] = @board.posts.map do |post|
+  render partial: "api/posts/post.json.jb",locals: {post: post}
 end
-}
+
+board

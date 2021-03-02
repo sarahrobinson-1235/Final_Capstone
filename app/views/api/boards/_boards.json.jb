@@ -1,6 +1,0 @@
-{
-  Title: board.title,
-  Description: board.description,
-  Creator: board.user.name,
-  Updated: board.updated_at
-}

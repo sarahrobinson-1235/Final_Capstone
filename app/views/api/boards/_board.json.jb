@@ -1,0 +1,10 @@
+{
+  id: board.id,
+  title: board.title,
+  description: board.description,
+  updated_at: board.updated_at,
+  created_by: {
+    id: board.user.id,
+    name: board.user.name
+  }
+}

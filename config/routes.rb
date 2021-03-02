@@ -26,7 +26,7 @@ Rails.application.routes.draw do
     post "/board_posts" => "board_posts#create"
     delete "/board_posts/:id" => "board_posts#destroy"
 
-    get "/user_boards/:id" => "user_boards#index"
+ 
 
     get "/quote" => "quotes#daily"
 
