@@ -1,6 +1,6 @@
 {
   id: post.id,
-  title: post.name,
+  name: post.name,
   image_url: post.image_url,
   body: post.body,
   created_by: {
