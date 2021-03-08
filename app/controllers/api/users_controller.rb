@@ -33,7 +33,7 @@ class Api::UsersController < ApplicationController
 
   def update
     @user = User.find_by(id: params[:id])
-    if @user == current_user
+    if @user.id == current_user.id
       @user.name = params[:name] || @user.name
       @user.email = params[:email] || @user.email
       if params[:password]
