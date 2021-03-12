@@ -6,5 +6,6 @@
   created_by: {
     id: board.user.id,
     name: board.user.name
-  }
+  },
+  board_posts: board.board_posts
 }
