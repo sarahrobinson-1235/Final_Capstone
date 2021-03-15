@@ -6,7 +6,7 @@ class Api::BoardPostsController < ApplicationController
         post_id: params[:post_id],
         board_id: params[:board_id]
       )
-      if current_user.id !== @board_post.board.user_id
+      if current_user.id == @board_post.board.user_id
         if @board_post.save
           render json: {message: "Post added to board!"}
         else
