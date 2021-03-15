@@ -3,10 +3,5 @@
   name: post.name,
   image_url: post.image_url,
   body: post.body,
-  created_by: {
-    id: post.user.id,
-    name: post.user.name,
-    image_url: post.user.image_url
-  },
   created_at: post.created_at,
 }
