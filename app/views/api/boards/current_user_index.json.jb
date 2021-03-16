@@ -1,0 +1,5 @@
+boards = @boards.map do |board|
+  render partial: "board.json.jb", locals: {board: board}
+  
+  
+end

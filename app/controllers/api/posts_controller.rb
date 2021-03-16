@@ -1,35 +1,28 @@
 class Api::PostsController < ApplicationController
 
+  before_action :authenticate_user, except: :index
   def index
     @posts = Post.all 
     render "index.json.jb"
   end
 
   def create
-    if current_user
-      @post = Post.new(
-        user_id: current_user.id,
-        name: params[:name],
-        body: params[:body],
-        image_url: params[:image_url]
-      )
-      if @post.save
-        render "show.json.jb"
-      else
-        render json: { errors: @post.errors.full_messages }, status: :unprocessable_entity
-      end
+    @post = Post.new(
+      user_id: current_user.id,
+      name: params[:name],
+      body: params[:body],
+      image_url: params[:image_url]
+    )
+    if @post.save
+      render "show.json.jb"
     else
-      render json: {message: "You must be logged in to make a post"}
+      render json: { errors: @post.errors.full_messages }, status: :unprocessable_entity
     end
   end
 
   def show
-    if current_user
-      @post = Post.find_by(id: params[:id])
-      render "show.json.jb"
-    else
-      render json: {message: "You must be logged in to see this post"}
-    end
+    @post = Post.find_by(id: params[:id])
+    render "show.json.jb"
   end
 
   def update

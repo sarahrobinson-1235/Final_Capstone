@@ -1,4 +1,5 @@
 post = render partial: "post.json.jb", locals: {post: @post}
 post[:user] = render partial: "api/users/user.json.jb", locals: {user: @post.user}
+post[:likes] = @post.boards.count
 
 post

@@ -1,38 +1,33 @@
 class Api::BoardsController < ApplicationController
+  before_action :authenticate_user
 
   def index
-    if current_user
-      @boards = Board.all
-      render "index.json.jb"
-    else
-      render json: {message: "You must be logged in!"}
-    end
+    @boards = Board.all
+    render "index.json.jb"
   end
 
   def create
-    if current_user
-      @board = Board.new(
-        user_id: current_user.id,
-        title: params[:title],
-        description: params[:description]
-      )
-      if @board.save
-        render "show.json.jb"
-      else
-        render json: {errors: @board.errors.full_messages }, status: :unprocessable_entity 
-      end
+    @board = Board.new(
+      user_id: current_user.id,
+      title: params[:title],
+      description: params[:description]
+    )
+    if @board.save
+      render "show.json.jb"
     else
-      render json: {message: "You must be logged in!"}
+      render json: {errors: @board.errors.full_messages }, status: :unprocessable_entity 
     end
+    
+  end
+
+  def current_user_index
+    @boards = current_user.boards
+    render "current_user_index.json.jb"
   end
 
   def show
-    if current_user
-      @board = Board.find_by(id: params[:id])
-      render "show.json.jb"
-    else
-      render json: {message: "You must be logged in!"}
-    end
+    @board = Board.find_by(id: params[:id])
+    render "show.json.jb"
   end
 
   def update

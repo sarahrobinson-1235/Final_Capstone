@@ -1,8 +1,11 @@
-{
+post_hash = {
   id: post.id,
   name: post.name,
   image_url: post.image_url,
   body: post.body,
   created_at: post.created_at,
-  user: post.user
+  
 }
+post_hash[:user] = render partial: "api/users/user.json.jb", locals: {user: post.user}
+
+post_hash

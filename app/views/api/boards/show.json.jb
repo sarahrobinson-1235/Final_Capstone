@@ -1,11 +1,14 @@
 board = render partial: "board.json.jb", locals: {board: @board}
-board[:posts] = @board.posts.map do |post|
-  render partial: "api/posts/post.json.jb",locals: {post: post}
-  
+board[:board_posts] = @board.board_posts.map do |board_post|
+  board_post_hash = render partial: "api/board_posts/board_post.json.jb",locals: {board_post: board_post}
+
+  board_post_hash[:post] = render partial: "api/posts/post.json.jb", locals: {post: board_post.post}
+  board_post_hash
 
 end
 
 board[:user] = render partial: "api/users/user.json.jb", locals: {user: @board.user}
+
 
 
 board

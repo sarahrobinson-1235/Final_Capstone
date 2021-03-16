@@ -3,5 +3,5 @@
   title: board.title,
   description: board.description,
   updated_at: board.updated_at,
-  board_posts: board.board_posts
+  
 }

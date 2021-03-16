@@ -19,13 +19,14 @@ Rails.application.routes.draw do
 
     get "/boards" => "boards#index"
     post "/boards" => "boards#create"
+    get "/boards/me" => "boards#current_user_index"
     get "/boards/:id" => "boards#show"
     patch "/boards/:id" => "boards#update"
     delete "/boards/:id" => "boards#destroy"
+    
 
     post "/board_posts" => "board_posts#create"
     delete "/board_posts/:id" => "board_posts#destroy"
-
  
 
     get "/quote" => "quotes#daily"
