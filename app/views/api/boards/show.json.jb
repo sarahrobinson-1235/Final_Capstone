@@ -1,9 +1,11 @@
 board = render partial: "board.json.jb", locals: {board: @board}
 board[:posts] = @board.posts.map do |post|
-  render partial: "api/posts/post.json.jb",locals: {post: @post}
+  render partial: "api/posts/post.json.jb",locals: {post: post}
   
+
 end
-board[:user] = render partial: "api/users/user.json.jb", locals: {user: @user}
+
+board[:user] = render partial: "api/users/user.json.jb", locals: {user: @board.user}
 
 
 board

@@ -1,5 +1,6 @@
 boards = @boards.map do |board|
   board_hash = render partial: "board.json.jb", locals: {board: board}
+  
   board_hash[:user] = render partial: "api/users/user.json.jb", locals: {user: board.user}
 
   board_hash

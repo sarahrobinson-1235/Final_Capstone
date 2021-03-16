@@ -4,4 +4,5 @@
   image_url: post.image_url,
   body: post.body,
   created_at: post.created_at,
+  user: post.user
 }
