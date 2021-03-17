@@ -9,7 +9,7 @@ class Api::BoardPostsController < ApplicationController
       if @board_post.save
         render json: {message: "Post added to board!"}
       else
-        render json: {errors: @board_post.errors.full_messages}, status: :unprocessable_entity
+        render json: {message: "Post already in your board!"}
       end
     else
       render json: {message: "Sorry, that's not your board"}
