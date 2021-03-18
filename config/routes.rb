@@ -31,7 +31,7 @@ Rails.application.routes.draw do
     
     
 
-    get "/quote" => "quotes#daily"
+    get "/quote" => "quotes#featured"
 
   end
 end

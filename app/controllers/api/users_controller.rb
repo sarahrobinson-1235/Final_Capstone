@@ -10,7 +10,7 @@ class Api::UsersController < ApplicationController
     )
       if @user.save
         # Tell the UserMailer to send a welcome email after save
-        UserMailer.with(user: @user).welcome_email.deliver
+        UserMailer.with(user: @user).welcome_email.deliver_now
 
         
         render json: { message: "User created successfully" }, status: :created
