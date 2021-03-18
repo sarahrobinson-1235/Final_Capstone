@@ -2,17 +2,27 @@ class Api::UsersController < ApplicationController
   # before_action :authenticate_admin
   
   def create
-    user = User.new(
+    @user = User.new(
       name: params[:name],
       email: params[:email],
       password: params[:password],
       password_confirmation: params[:password_confirmation]
     )
-    if user.save
-      render json: { message: "User created successfully" }, status: :created
-    else
-      render json: { errors: user.errors.full_messages }, status: :unprocessable_entity
-    end
+      if @user.save
+        # Tell the UserMailer to send a welcome email after save
+        UserMailer.with(user: @user).welcome_email.deliver
+
+        
+        render json: { message: "User created successfully" }, status: :created
+      else
+        render json: { errors: @user.errors.full_messages }, status: :unprocessable_entity
+      end
+
+    # if @user.save
+    #   render json: { message: "User created successfully" }, status: :created
+    # else
+    #   render json: { errors: @user.errors.full_messages }, status: :unprocessable_entity
+    # end
   end
 
 

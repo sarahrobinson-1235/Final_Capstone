@@ -28,9 +28,8 @@ Rails.application.routes.draw do
     post "/board_posts" => "board_posts#create"
     delete "/board_posts/:id" => "board_posts#destroy"
 
-    get "/messages" => "messages#index"
-    post "/messages" => "messages#create"
- 
+    
+    
 
     get "/quote" => "quotes#daily"
 
