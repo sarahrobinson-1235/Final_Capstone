@@ -1,3 +1,3 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: 'sarahaleesia1@gmail.com'
+  default from: 'lovelyaffirmationssignup@gmail.com'
 end
